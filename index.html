@@ -325,12 +325,18 @@
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
     import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, deleteDoc, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
-    // --- CANVAS ENVIRONMENT INTEGRATION ---
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'otolink-demo-app';
-    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-      // Mock config if not in canvas (will fail if actually called without valid canvas config, but prevents JS syntax errors)
-      apiKey: "mock", authDomain: "mock", projectId: "mock", storageBucket: "mock"
+    // --- FIREBASE CONFIGURATION ---
+    const firebaseConfig = {
+      apiKey: "AIzaSyBARlWoWFwiRI6VUuRMURYSbDaVzSRmn_U",
+      authDomain: "look-the-cats-official.firebaseapp.com",
+      projectId: "look-the-cats-official",
+      storageBucket: "look-the-cats-official.firebasestorage.app",
+      messagingSenderId: "1286590659",
+      appId: "1:1286590659:web:1878a970fc778ae6f19276",
+      measurementId: "G-XGF86YXY3Y"
     };
+
+    const appId = firebaseConfig.appId; // Digunakan sebagai unique identifier untuk struktur database
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
