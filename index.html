@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>OtoLink - Platform Showroom Mobil Bekas Digital</title>
+  <meta name="description" content="Buat website showroom mobil bekas Anda dalam 1 menit. Bagikan katalog, terima order via WhatsApp." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Menggunakan icon dari Phosphor Icons untuk kelengkapan -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f8fafc; }
+    .hide { display: none !important; }
+    
+    /* Tema Otomotif (Biru Profesional & Slate) */
+    .btn-main { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: #fff; }
+    .btn-dark { background: linear-gradient(135deg, #0f172a, #334155); color: #fff; }
+    .glass { background: rgba(255,255,255,.95); backdrop-filter: blur(10px); }
+    
+    .phone-frame { max-width: 400px; margin: auto; border-radius: 36px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,.15); border: 12px solid #0f172a; background: #f1f5f9; }
+    
+    /* Background Styles untuk Public Page */
+    .public-bg-blue { background: linear-gradient(to bottom, #eff6ff, #f8fafc); }
+    .public-bg-dark { background: #0f172a; color: white; }
+    
+    .soft-card { background: #ffffff; border: 1px solid rgba(15,23,42,.08); box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+    .dark-card { background: #1e293b; border: 1px solid rgba(255,255,255,.1); color: white; }
+    .modal-bg { background: rgba(15,23,42,.75); backdrop-filter: blur(4px); }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+  </style>
+</head>
+
+<body class="min-h-screen text-slate-900">
+
+  <!-- ================= LANDING PAGE ================= -->
+  <section id="landingPage" class="min-h-screen flex flex-col">
+    <nav class="max-w-7xl w-full mx-auto px-5 py-5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl btn-main flex items-center justify-center font-black text-white text-xl shadow-lg">
+          <i class="ph ph-car-profile"></i>
+        </div>
+        <div>
+          <h1 class="font-black text-xl leading-none tracking-tight">OtoLink</h1>
+          <p class="text-xs text-slate-500 font-medium">Showroom Digital</p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <button onclick="showLogin()" class="px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-sm font-bold shadow-sm hover:bg-slate-50 transition-colors">Masuk</button>
+        <button onclick="showRegister()" class="px-5 py-2.5 rounded-xl btn-main text-sm font-bold shadow-lg shadow-blue-200 hover:opacity-90 transition-opacity hidden sm:block">Buka Showroom</button>
+      </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto px-5 py-12 md:py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-6 border border-blue-200">
+          🚀 Solusi Cerdas Jual Mobil
+        </div>
+        <h2 class="text-4xl md:text-6xl font-black leading-tight text-slate-900">
+          Satu Link Untuk <span class="text-blue-600">Showroom Mobil</span> Anda
+        </h2>
+        <p class="text-lg text-slate-600 mt-6 max-w-xl leading-relaxed">
+          Tinggalkan cara lama. Buat katalog mobil bekas digital Anda, bagikan di Bio Instagram/TikTok, dan biarkan pelanggan menghubungi Anda langsung via WhatsApp dalam 1 kali klik.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mt-8">
+          <button onclick="showRegister()" class="px-8 py-4 rounded-2xl btn-main font-black text-lg shadow-xl shadow-blue-200 hover:-translate-y-1 transition-transform">Buat Link Gratis</button>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-12 max-w-2xl border-t pt-8">
+          <div><b class="text-xl flex items-center gap-2"><i class="ph-fill ph-check-circle text-blue-500"></i> Mudah</b><p class="text-sm text-slate-500 mt-1">Setup 1 Menit</p></div>
+          <div><b class="text-xl flex items-center gap-2"><i class="ph-fill ph-whatsapp-logo text-green-500"></i> Langsung</b><p class="text-sm text-slate-500 mt-1">Order ke WA</p></div>
+          <div><b class="text-xl flex items-center gap-2"><i class="ph-fill ph-images text-purple-500"></i> Rapi</b><p class="text-sm text-slate-500 mt-1">Katalog Menarik</p></div>
+        </div>
+      </div>
+
+      <div class="phone-frame bg-white">
+        <div class="public-bg-blue p-5 min-h-[680px]">
+          <div class="text-center pt-8 pb-4">
+            <div class="w-20 h-20 rounded-full btn-main mx-auto flex items-center justify-center text-white text-3xl font-black shadow-lg">M</div>
+            <h3 class="text-2xl font-black mt-4">Mobilindo Maju</h3>
+            <p class="text-slate-600 text-sm mt-1">Pusat Mobil Bekas Berkualitas Jakarta</p>
+            <button class="mt-4 w-full bg-green-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-green-200">
+              <i class="ph-fill ph-whatsapp-logo text-xl"></i> Chat WhatsApp
+            </button>
+          </div>
+          
+          <h4 class="font-black text-lg mt-6 mb-3 px-1">Katalog Mobil</h4>
+          <div class="space-y-4">
+            <!-- Mock Card 1 -->
+            <div class="bg-white rounded-2xl p-3 shadow-sm border border-slate-100">
+              <div class="h-36 rounded-xl bg-slate-200 mb-3 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" />
+              </div>
+              <h5 class="font-bold text-slate-900 leading-tight">Toyota Avanza 1.5 G</h5>
+              <p class="text-blue-600 font-black text-lg mt-1">Rp 185.000.000</p>
+              <div class="flex gap-3 text-xs text-slate-500 mt-2">
+                <span class="flex items-center gap-1"><i class="ph ph-calendar"></i> 2021</span>
+                <span class="flex items-center gap-1"><i class="ph ph-steering-wheel"></i> Manual</span>
+              </div>
+            </div>
+            <!-- Mock Card 2 -->
+            <div class="bg-white rounded-2xl p-3 shadow-sm border border-slate-100">
+              <div class="h-36 rounded-xl bg-slate-200 mb-3 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" />
+              </div>
+              <h5 class="font-bold text-slate-900 leading-tight">Honda Brio Satya E</h5>
+              <p class="text-blue-600 font-black text-lg mt-1">Rp 155.000.000</p>
+              <div class="flex gap-3 text-xs text-slate-500 mt-2">
+                <span class="flex items-center gap-1"><i class="ph ph-calendar"></i> 2022</span>
+                <span class="flex items-center gap-1"><i class="ph ph-steering-wheel"></i> Matic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ================= AUTH PAGE ================= -->
+  <section id="authPage" class="hide min-h-screen flex items-center justify-center px-5 py-10 bg-slate-50">
+    <div class="w-full max-w-md bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+      <button onclick="backHome()" class="text-sm text-slate-500 mb-6 flex items-center gap-2 hover:text-slate-800 transition-colors">
+        <i class="ph ph-arrow-left"></i> Kembali
+      </button>
+      <h2 id="authTitle" class="text-3xl font-black text-slate-900">Login</h2>
+      <p class="text-slate-500 mt-2 text-sm">Masuk untuk mengelola showroom Anda.</p>
+      
+      <div id="nameField" class="hide mt-6">
+        <label class="text-sm font-bold text-slate-700">Nama Showroom</label>
+        <input id="regBusinessName" class="w-full mt-2 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="Contoh: Mobilindo Jaya" />
+      </div>
+      <div class="mt-4">
+        <label class="text-sm font-bold text-slate-700">Email</label>
+        <input id="authEmail" type="email" class="w-full mt-2 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="email@domain.com" />
+      </div>
+      <div class="mt-4">
+        <label class="text-sm font-bold text-slate-700">Password</label>
+        <input id="authPassword" type="password" class="w-full mt-2 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="Minimal 6 karakter" />
+      </div>
+      
+      <button id="authButton" onclick="doLogin()" class="w-full btn-main rounded-xl py-4 font-black mt-8 shadow-lg hover:shadow-xl transition-shadow">Login</button>
+      
+      <p id="switchAuth" class="text-center text-sm mt-6 text-slate-600">Belum punya akun? <button onclick="showRegister()" class="font-bold text-blue-600 hover:underline">Daftar</button></p>
+      <div id="authMsg" class="text-sm text-center mt-4 font-medium"></div>
+    </div>
+  </section>
+
+  <!-- ================= DASHBOARD PAGE ================= -->
+  <section id="dashboardPage" class="hide min-h-screen bg-slate-50 pb-12">
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30">
+      <div class="max-w-7xl mx-auto px-5 py-4 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-xl shadow-sm"><i class="ph-fill ph-storefront"></i></div>
+          <div>
+            <h2 class="font-black text-lg text-slate-900 leading-none">Dashboard</h2>
+            <p id="userPlanText" class="text-xs text-slate-500 mt-1">OtoLink Partner</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button id="copyPublicBtn" onclick="copyPublicLink()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-sm font-bold transition-colors flex items-center gap-2"><i class="ph ph-copy"></i> Copy Link</button>
+          <button id="openPublicBtn" onclick="openPublicPage()" class="px-4 py-2 rounded-xl btn-main text-sm font-bold shadow-md hover:shadow-lg transition-shadow flex items-center gap-2"><i class="ph ph-arrow-square-out"></i> Buka Link</button>
+          <button onclick="logout()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-sm font-bold transition-colors">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-5 grid lg:grid-cols-3 gap-8 mt-4">
+      <!-- Kolom Kiri: Form & Daftar -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- Statistik -->
+        <div id="dashboardStats" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 text-2xl"><i class="ph ph-car"></i></div>
+            <div><p class="text-xs text-slate-500 font-medium">Total Mobil</p><b id="statCars" class="text-2xl text-slate-900">0</b></div>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-green-600 text-2xl"><i class="ph ph-whatsapp-logo"></i></div>
+            <div><p class="text-xs text-slate-500 font-medium">No. WA</p><b id="statWA" class="text-sm text-slate-900 truncate block w-24">Belum set</b></div>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm flex items-center gap-4 col-span-2 md:col-span-1">
+            <div class="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 text-2xl"><i class="ph ph-link"></i></div>
+            <div><p class="text-xs text-slate-500 font-medium">Status Link</p><b id="statStatus" class="text-lg text-green-600">Aktif</b></div>
+          </div>
+        </div>
+
+        <!-- Profil Showroom -->
+        <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-sm">
+          <h3 class="font-black text-xl text-slate-900 flex items-center gap-2"><i class="ph-fill ph-identification-card text-blue-500"></i> Profil Showroom</h3>
+          <p class="text-sm text-slate-500 mb-6 mt-1">Informasi utama yang akan tampil di halaman publik Anda.</p>
+          
+          <div class="grid md:grid-cols-2 gap-5">
+            <div>
+              <label class="text-sm font-bold text-slate-700">Nama Showroom</label>
+              <input id="businessName" class="w-full mt-2 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 outline-none" placeholder="Cth: Auto Jaya Motor" />
+            </div>
+            <div>
+              <label class="text-sm font-bold text-slate-700">Link Kustom (Slug)</label>
+              <input id="slug" class="w-full mt-2 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 outline-none" placeholder="autojaya" />
+              <p class="text-xs text-slate-500 mt-1.5">Link: <span id="slugPreview" class="text-blue-600 font-medium">?u=autojaya</span></p>
+            </div>
+            <div>
+              <label class="text-sm font-bold text-slate-700">Nomor WhatsApp</label>
+              <input id="whatsapp" class="w-full mt-2 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 outline-none" placeholder="628123456789" />
+              <p class="text-xs text-slate-500 mt-1.5">Gunakan awalan 62</p>
+            </div>
+            <div>
+              <label class="text-sm font-bold text-slate-700">Tema Halaman</label>
+              <select id="themeColor" class="w-full mt-2 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 outline-none appearance-none">
+                <option value="light">Terang (Modern Light)</option>
+                <option value="dark">Gelap (Premium Dark)</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="text-sm font-bold text-slate-700">Deskripsi / Slogan</label>
+              <textarea id="bioText" class="w-full mt-2 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 outline-none" rows="2" placeholder="Cth: Menjual berbagai mobil bekas berkualitas dengan harga terbaik. Melayani cash dan kredit."></textarea>
+            </div>
+          </div>
+          
+          <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+            <button onclick="saveProfile()" class="btn-main px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-md hover:shadow-lg transition-all">
+              <i class="ph ph-floppy-disk"></i> Simpan Profil
+            </button>
+            <span id="profileMsg" class="text-sm font-medium"></span>
+          </div>
+        </div>
+
+        <!-- Tambah Mobil -->
+        <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-sm">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="font-black text-xl text-slate-900 flex items-center gap-2"><i class="ph-fill ph-car-profile text-blue-500"></i> Katalog Mobil</h3>
+              <p class="text-sm text-slate-500 mt-1">Tambahkan mobil yang ingin Anda jual.</p>
+            </div>
+            <div class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+              <span id="carCountText">0</span> Mobil
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+            <h4 class="font-bold text-slate-800 mb-4 text-sm uppercase tracking-wider">Form Tambah Mobil</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="md:col-span-2">
+                <input id="carName" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 outline-none" placeholder="Merek & Model (Cth: Toyota Fortuner 2.4 VRZ)" />
+              </div>
+              <div>
+                <input id="carPrice" type="number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 outline-none" placeholder="Harga (Rp) - Angka Saja" />
+              </div>
+              <div>
+                <input id="carYear" type="number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 outline-none" placeholder="Tahun (Cth: 2019)" />
+              </div>
+              <div>
+                <select id="carTransmission" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 outline-none text-slate-700">
+                  <option value="" disabled selected>Pilih Transmisi</option>
+                  <option value="Automatic">Automatic (AT)</option>
+                  <option value="Manual">Manual (MT)</option>
+                </select>
+              </div>
+              <div>
+                <input id="carMileage" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 outline-none" placeholder="Jarak Tempuh (Cth: 45.000 km)" />
+              </div>
+              <div class="md:col-span-2">
+                <input id="carImage" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 outline-none" placeholder="URL Gambar Mobil (Kosongkan jika tidak ada)" />
+              </div>
+            </div>
+            <button onclick="addCar()" class="mt-5 w-full md:w-auto px-6 py-3 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors shadow-md">
+              + Tambah ke Katalog
+            </button>
+          </div>
+
+          <div id="carsList" class="mt-8 grid sm:grid-cols-2 gap-5">
+            <!-- Render list mobil di sini -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Kolom Kanan: Preview -->
+      <aside id="previewAside" class="hidden lg:block">
+        <div class="sticky top-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-black text-lg text-slate-900">Preview Layar HP</h3>
+            <span class="text-xs bg-slate-200 text-slate-600 px-2 py-1 rounded font-medium">Live</span>
+          </div>
+          <div class="phone-frame shadow-2xl relative">
+            <div id="previewBox" class="w-full h-[650px] overflow-y-auto overflow-x-hidden">
+              <!-- Content injected via JS -->
+            </div>
+            <!-- Glare effect on phone frame -->
+            <div class="absolute top-0 right-0 w-16 h-full bg-white opacity-5 transform skew-x-12 pointer-events-none"></div>
+          </div>
+          <p class="text-center text-xs text-slate-400 mt-4">Tampilan ini yang akan dilihat oleh pelanggan Anda.</p>
+        </div>
+      </aside>
+    </main>
+  </section>
+
+  <!-- ================= PUBLIC PAGE ================= -->
+  <section id="publicPage" class="hide min-h-screen">
+    <div class="max-w-md mx-auto min-h-screen relative shadow-2xl" id="publicContent">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- ================= MODAL ALERTS ================= -->
+  <div id="modal" class="hide fixed inset-0 z-50 modal-bg flex items-center justify-center p-5 opacity-100 transition-opacity">
+    <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl transform scale-100 transition-transform">
+      <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-4">
+        <i class="ph-fill ph-info"></i>
+      </div>
+      <h3 id="modalTitle" class="font-black text-xl text-slate-900">Info</h3>
+      <p id="modalText" class="text-slate-600 mt-2 text-sm leading-relaxed"></p>
+      <button onclick="closeModal()" class="w-full py-3 rounded-xl btn-main font-bold mt-6 shadow-md">Mengerti</button>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, deleteDoc, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+
+    // --- CANVAS ENVIRONMENT INTEGRATION ---
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'otolink-demo-app';
+    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+      // Mock config if not in canvas (will fail if actually called without valid canvas config, but prevents JS syntax errors)
+      apiKey: "mock", authDomain: "mock", projectId: "mock", storageBucket: "mock"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // --- STATE MANAGEMENT ---
+    let currentUser = null;
+    let currentProfile = null;
+    let currentCars = [];
+
+    // --- UTILS ---
+    const el = id => document.getElementById(id);
+    const showOnly = pageId => { 
+      ["landingPage", "authPage", "dashboardPage", "publicPage"].forEach(id => el(id).classList.add("hide")); 
+      el(pageId).classList.remove("hide"); 
+    };
+    
+    function modal(title, text) { 
+      el("modalTitle").innerText = title; 
+      el("modalText").innerText = text; 
+      el("modal").classList.remove("hide"); 
+    }
+    window.closeModal = () => el("modal").classList.add("hide");
+    
+    const slugify = text => String(text || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    const cleanPhone = phone => { let p = String(phone || "").replace(/\D/g, ""); if (p.startsWith("0")) p = "62" + p.slice(1); return p; };
+    const formatRp = n => "Rp " + new Intl.NumberFormat("id-ID", { maximumFractionDigits: 0 }).format(Number(n) || 0);
+    const getBaseUrl = () => location.origin + location.pathname;
+    const getPublicLink = slug => `${getBaseUrl()}?u=${encodeURIComponent(slug || "")}`;
+
+    // --- AUTH UI ACTIONS ---
+    window.showLogin = () => { 
+      showOnly("authPage"); 
+      el("authTitle").innerText = "Login Dealer"; 
+      el("nameField").classList.add("hide"); 
+      el("authButton").innerText = "Masuk"; 
+      el("authButton").setAttribute("onclick", "doLogin()"); 
+      el("switchAuth").innerHTML = `Belum punya akun? <button onclick="showRegister()" class="font-bold text-blue-600 hover:underline">Daftar</button>`; 
+      el("authMsg").innerText = ""; 
+    };
+    
+    window.showRegister = () => { 
+      showOnly("authPage"); 
+      el("authTitle").innerText = "Buka Showroom"; 
+      el("nameField").classList.remove("hide"); 
+      el("authButton").innerText = "Daftar Sekarang"; 
+      el("authButton").setAttribute("onclick", "doRegister()"); 
+      el("switchAuth").innerHTML = `Sudah punya akun? <button onclick="showLogin()" class="font-bold text-blue-600 hover:underline">Masuk</button>`; 
+      el("authMsg").innerText = ""; 
+    };
+    
+    window.backHome = () => showOnly("landingPage");
+
+    // --- AUTH LOGIC ---
+    window.doRegister = async () => {
+      try {
+        el("authMsg").className = "text-sm text-slate-600 mt-4 text-center";
+        el("authMsg").innerText = "Membuat akun...";
+        el("authButton").disabled = true;
+
+        const email = el("authEmail").value.trim();
+        const password = el("authPassword").value.trim();
+        const name = el("regBusinessName").value.trim();
+        
+        if (!name || !email || !password) throw new Error("Semua kolom wajib diisi.");
+        
+        // 1. Create Auth User
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        const uid = cred.user.uid;
+        
+        // 2. Setup initial profile data
+        let slug = slugify(name) || "showroom-" + uid.slice(0, 6);
+        
+        const profileData = {
+          uid: uid,
+          email: email,
+          businessName: name,
+          slug: slug,
+          whatsapp: "",
+          bioText: "Pusat mobil bekas berkualitas.",
+          themeColor: "light",
+          createdAt: serverTimestamp()
+        };
+
+        // RULE 1: Store profile in public/data/showrooms so it can be read without complex security rules in Canvas
+        const profileRef = doc(db, 'artifacts', appId, 'public', 'data', 'showrooms', uid);
+        await setDoc(profileRef, profileData);
+
+        el("authMsg").className = "text-sm text-green-600 mt-4 font-bold text-center";
+        el("authMsg").innerText = "Akun berhasil dibuat!";
+        // onAuthStateChanged will handle redirection
+      } catch (err) {
+        el("authMsg").className = "text-sm text-red-600 mt-4 font-bold text-center";
+        el("authMsg").innerText = err.message;
+        el("authButton").disabled = false;
+      }
+    };
+
+    window.doLogin = async () => {
+      try {
+        el("authMsg").className = "text-sm text-slate-600 mt-4 text-center";
+        el("authMsg").innerText = "Sedang login...";
+        el("authButton").disabled = true;
+
+        const email = el("authEmail").value.trim();
+        const password = el("authPassword").value.trim();
+        
+        if (!email || !password) throw new Error("Email dan password wajib diisi.");
+        await signInWithEmailAndPassword(auth, email, password);
+        
+        // onAuthStateChanged handles the rest
+      } catch (err) {
+        el("authMsg").className = "text-sm text-red-600 mt-4 font-bold text-center";
+        el("authMsg").innerText = "Gagal login: " + err.message;
+        el("authButton").disabled = false;
+      }
+    };
+
+    window.logout = async () => { 
+      await signOut(auth); 
+      location.href = location.pathname; 
+    };
+
+    // --- DATA LOADING & DASHBOARD ---
+    async function loadDashboard(uid) {
+      try {
+        // Fetch Profile
+        const profileRef = doc(db, 'artifacts', appId, 'public', 'data', 'showrooms', uid);
+        const snap = await getDoc(profileRef);
+        
+        if (snap.exists()) {
+          currentProfile = snap.data();
+        } else {
+          // If profile missing, create a basic one
+          currentProfile = {
+            uid: uid,
+            email: currentUser.email,
+            businessName: "Showroom Baru",
+            slug: "user-" + uid.slice(0, 6),
+            whatsapp: "",
+            bioText: "",
+            themeColor: "light"
+          };
+          await setDoc(profileRef, currentProfile);
+        }
+
+        // Fetch Cars (Rule 2: Fetch all in collection, filter in memory)
+        const carsRef = collection(db, 'artifacts', appId, 'public', 'data', 'cars');
+        const carsSnap = await getDocs(carsRef);
+        currentCars = [];
+        carsSnap.forEach(doc => {
+          const carData = doc.data();
+          if (carData.uid === uid) {
+            currentCars.push({ id: doc.id, ...carData });
+          }
+        });
+        
+        // Sort descending by creation
+        currentCars.sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0));
+
+        populateDashboardUI();
+        showOnly("dashboardPage");
+      } catch (error) {
+        console.error("Dashboard Load Error:", error);
+        modal("Error", "Gagal memuat data dashboard.");
+      }
+    }
+
+    function populateDashboardUI() {
+      // Profile form
+      el("businessName").value = currentProfile.businessName || "";
+      el("slug").value = currentProfile.slug || "";
+      el("slugPreview").innerText = `?u=${currentProfile.slug}`;
+      el("whatsapp").value = currentProfile.whatsapp || "";
+      el("themeColor").value = currentProfile.themeColor || "light";
+      el("bioText").value = currentProfile.bioText || "";
+      
+      // Realtime slug preview
+      el("slug").addEventListener('input', (e) => {
+         el("slugPreview").innerText = `?u=${slugify(e.target.value)}`;
+      });
+
+      // Stats
+      el("statCars").innerText = currentCars.length;
+      el("statWA").innerText = currentProfile.whatsapp ? `+${currentProfile.whatsapp}` : "Belum Set";
+      el("carCountText").innerText = currentCars.length;
+
+      renderCarsList();
+      renderPreview();
+    }
+
+    window.saveProfile = async () => {
+      if (!currentUser) return;
+      try {
+        const btn = el("profileMsg");
+        btn.className = "text-sm text-slate-500 font-medium";
+        btn.innerText = "Menyimpan...";
+        
+        const newSlug = slugify(el("slug").value);
+        if (!newSlug) throw new Error("Slug tidak boleh kosong.");
+
+        const dataToUpdate = {
+          businessName: el("businessName").value.trim(),
+          slug: newSlug,
+          whatsapp: cleanPhone(el("whatsapp").value),
+          themeColor: el("themeColor").value,
+          bioText: el("bioText").value.trim(),
+          updatedAt: serverTimestamp()
+        };
+
+        const profileRef = doc(db, 'artifacts', appId, 'public', 'data', 'showrooms', currentUser.uid);
+        await setDoc(profileRef, dataToUpdate, { merge: true });
+        
+        currentProfile = { ...currentProfile, ...dataToUpdate };
+        
+        btn.className = "text-sm text-green-600 font-bold";
+        btn.innerText = "Tersimpan!";
+        setTimeout(() => btn.innerText = "", 3000);
+        
+        populateDashboardUI(); // Update preview & UI
+      } catch (err) {
+        const btn = el("profileMsg");
+        btn.className = "text-sm text-red-600 font-bold";
+        btn.innerText = err.message;
+      }
+    };
+
+    // --- CARS MANAGEMENT ---
+    window.addCar = async () => {
+      if (!currentUser) return;
+      
+      const name = el("carName").value.trim();
+      const price = el("carPrice").value.trim();
+      const year = el("carYear").value.trim();
+      const transmission = el("carTransmission").value;
+      const mileage = el("carMileage").value.trim();
+      let image = el("carImage").value.trim();
+      
+      if (!name || !price || !year || !transmission) {
+        return modal("Data Belum Lengkap", "Merek, Harga, Tahun, dan Transmisi wajib diisi.");
+      }
+
+      // Default placeholder if no image
+      if (!image) {
+        image = "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=400"; // Generic car
+      }
+
+      try {
+        const carsRef = collection(db, 'artifacts', appId, 'public', 'data', 'cars');
+        const newCarData = {
+          uid: currentUser.uid,
+          name,
+          price: Number(price),
+          year: Number(year),
+          transmission,
+          mileage: mileage || "-",
+          image,
+          createdAt: serverTimestamp()
+        };
+        
+        const docRef = await addDoc(carsRef, newCarData);
+        currentCars.unshift({ id: docRef.id, ...newCarData }); // Add to local state (top)
+        
+        // Reset form
+        ["carName", "carPrice", "carYear", "carMileage", "carImage"].forEach(id => el(id).value = "");
+        el("carTransmission").value = "";
+        
+        populateDashboardUI();
+        modal("Berhasil", "Mobil berhasil ditambahkan ke katalog!");
+      } catch (err) {
+        console.error(err);
+        modal("Error", "Gagal menambahkan mobil.");
+      }
+    };
+
+    window.deleteCar = async (id) => {
+      if (!currentUser || !confirm("Yakin ingin menghapus mobil ini?")) return;
+      try {
+        await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'cars', id));
+        currentCars = currentCars.filter(c => c.id !== id);
+        populateDashboardUI();
+      } catch (err) {
+        console.error(err);
+        modal("Error", "Gagal menghapus mobil.");
+      }
+    };
+
+    function renderCarsList() {
+      const box = el("carsList");
+      if (!currentCars.length) {
+        box.innerHTML = `<div class="col-span-2 text-center py-10 bg-white rounded-2xl border border-dashed border-slate-300"><i class="ph ph-car text-4xl text-slate-300 mb-2"></i><p class="text-sm text-slate-500">Belum ada mobil di katalog.</p></div>`;
+        return;
+      }
+      
+      box.innerHTML = currentCars.map(car => `
+        <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex flex-col">
+          <div class="h-40 rounded-xl bg-slate-100 mb-4 overflow-hidden relative group">
+            <img src="${car.image}" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="${car.name}" onerror="this.src='https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=400'"/>
+            <button onclick="deleteCar('${car.id}')" class="absolute top-2 right-2 w-8 h-8 bg-white/90 text-red-500 rounded-full flex items-center justify-center shadow hover:bg-red-50 transition-colors" title="Hapus"><i class="ph-bold ph-trash"></i></button>
+          </div>
+          <h5 class="font-bold text-slate-900 leading-tight truncate" title="${car.name}">${car.name}</h5>
+          <p class="text-blue-600 font-black text-lg mt-1">${formatRp(car.price)}</p>
+          <div class="grid grid-cols-2 gap-2 text-xs text-slate-500 mt-4 mb-2">
+            <span class="flex items-center gap-1.5"><i class="ph ph-calendar"></i> ${car.year}</span>
+            <span class="flex items-center gap-1.5"><i class="ph ph-steering-wheel"></i> ${car.transmission}</span>
+            <span class="flex items-center gap-1.5 col-span-2"><i class="ph ph-gauge"></i> ${car.mileage}</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // --- PUBLIC VIEW & PREVIEW RENDERING ---
+    function getThemeStyles(themeMode) {
+      if (themeMode === "dark") {
+        return {
+          wrapper: "bg-slate-900 min-h-full",
+          textMain: "text-white",
+          textMuted: "text-slate-400",
+          card: "bg-slate-800 border border-slate-700",
+          btn: "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-900/50",
+          logoBg: "bg-slate-800 border border-slate-700 text-blue-400"
+        };
+      }
+      return {
+        wrapper: "public-bg-blue min-h-full",
+        textMain: "text-slate-900",
+        textMuted: "text-slate-500",
+        card: "bg-white border border-slate-100 shadow-sm",
+        btn: "btn-main hover:opacity-90 shadow-lg shadow-blue-200",
+        logoBg: "bg-white shadow-md text-blue-600 border border-slate-100"
+      };
+    }
+
+    function buildPublicHtml(profile, cars, isPreview = false) {
+      const t = getThemeStyles(profile.themeColor);
+      const initials = (profile.businessName || "O").charAt(0).toUpperCase();
+      const waNumber = profile.whatsapp || "";
+      const waLink = waNumber ? `https://wa.me/${waNumber}` : "#";
+      
+      const headerHtml = `
+        <div class="text-center pt-8 pb-4">
+          <div class="w-24 h-24 rounded-full mx-auto flex items-center justify-center text-4xl font-black ${t.logoBg}">${initials}</div>
+          <h1 class="text-2xl font-black mt-5 ${t.textMain}">${profile.businessName || "Nama Showroom"}</h1>
+          <p class="${t.textMuted} text-sm mt-2 px-4 leading-relaxed">${profile.bioText || "Pusat jual beli mobil bekas berkualitas."}</p>
+          
+          ${waNumber ? `
+            <a href="${isPreview ? 'javascript:void(0)' : waLink}" target="${isPreview ? '' : '_blank'}" class="mt-6 mx-4 bg-green-500 text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-green-200/50 hover:-translate-y-0.5 transition-transform">
+              <i class="ph-fill ph-whatsapp-logo text-2xl"></i> Hubungi Kami
+            </a>
+          ` : `
+            <div class="mt-6 mx-4 bg-slate-200 text-slate-500 font-bold py-3 px-4 rounded-xl text-sm">Nomor WhatsApp belum diatur</div>
+          `}
+        </div>
+      `;
+
+      const carsHtml = cars.map(car => {
+        const chatMsg = encodeURIComponent(`Halo, saya tertarik dengan ${car.name} (${car.year}) seharga ${formatRp(car.price)} yang ada di katalog OtoLink Anda.`);
+        const carWaLink = waNumber ? `${waLink}?text=${chatMsg}` : "#";
+
+        return `
+          <div class="${t.card} rounded-2xl p-3 flex flex-col group transition-all">
+            <div class="h-40 rounded-xl bg-slate-200 mb-4 overflow-hidden relative">
+              <img src="${car.image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=400'"/>
+              <div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2.5 py-1 rounded-lg text-xs font-bold text-slate-800 shadow-sm">
+                ${car.year}
+              </div>
+            </div>
+            <h5 class="font-bold ${t.textMain} leading-tight">${car.name}</h5>
+            <p class="text-blue-500 font-black text-lg mt-1">${formatRp(car.price)}</p>
+            
+            <div class="grid grid-cols-2 gap-2 text-xs ${t.textMuted} mt-4 mb-4">
+              <span class="flex items-center gap-1.5"><i class="ph-fill ph-steering-wheel"></i> ${car.transmission}</span>
+              <span class="flex items-center gap-1.5"><i class="ph-fill ph-gauge"></i> ${car.mileage}</span>
+            </div>
+            
+            <a href="${isPreview ? 'javascript:void(0)' : carWaLink}" target="${isPreview ? '' : '_blank'}" class="mt-auto w-full py-2.5 rounded-xl ${t.btn} font-bold text-sm text-center flex items-center justify-center gap-2">
+              <i class="ph-bold ph-chat-circle-dots"></i> Tanya Mobil Ini
+            </a>
+          </div>
+        `;
+      }).join("");
+
+      return `
+        <div class="${t.wrapper} p-2 pb-12">
+          ${headerHtml}
+          
+          <div class="px-4 mt-8">
+            <h2 class="font-black text-lg mb-4 flex items-center gap-2 ${t.textMain}"><i class="ph-fill ph-car-profile text-blue-500"></i> Katalog Kendaraan</h2>
+            <div class="space-y-4">
+              ${carsHtml || `<div class="text-center py-10 rounded-2xl ${t.card}"><p class="text-sm ${t.textMuted}">Katalog masih kosong.</p></div>`}
+            </div>
+          </div>
+          
+          <div class="mt-12 text-center">
+            <p class="text-xs ${t.textMuted} opacity-70 flex items-center justify-center gap-1">
+              Dibuat dengan <i class="ph-fill ph-car-profile"></i> OtoLink
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPreview() {
+      if(el("previewBox")) {
+        el("previewBox").innerHTML = buildPublicHtml(currentProfile, currentCars, true);
+      }
+    }
+
+    // --- PUBLIC PAGE LOGIC ---
+    async function loadPublicPage(slug) {
+      try {
+        // Fetch all showrooms to find the matching slug (Rule 2 implementation)
+        const showroomsRef = collection(db, 'artifacts', appId, 'public', 'data', 'showrooms');
+        const snap = await getDocs(showroomsRef);
+        
+        let targetProfile = null;
+        snap.forEach(doc => {
+          if (doc.data().slug === slug) targetProfile = doc.data();
+        });
+
+        if (!targetProfile) {
+           return showPublicError("Showroom tidak ditemukan atau link salah.");
+        }
+
+        // Fetch cars for this showroom
+        const carsRef = collection(db, 'artifacts', appId, 'public', 'data', 'cars');
+        const carsSnap = await getDocs(carsRef);
+        let targetCars = [];
+        carsSnap.forEach(doc => {
+          if (doc.data().uid === targetProfile.uid) {
+            targetCars.push({ id: doc.id, ...doc.data() });
+          }
+        });
+        targetCars.sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0));
+
+        showOnly("publicPage");
+        
+        const wrapperClasses = getThemeStyles(targetProfile.themeColor).wrapper;
+        el("publicPage").className = `min-h-screen ${wrapperClasses}`;
+        el("publicContent").innerHTML = buildPublicHtml(targetProfile, targetCars, false);
+        document.title = `${targetProfile.businessName} - Katalog Mobil`;
+        
+      } catch (err) {
+        console.error(err);
+        showPublicError("Gagal memuat halaman showroom.");
+      }
+    }
+
+    function showPublicError(msg) {
+      showOnly("publicPage");
+      el("publicPage").className = "min-h-screen bg-slate-50 flex items-center justify-center p-5";
+      el("publicContent").innerHTML = `
+        <div class="bg-white rounded-3xl p-8 text-center shadow-xl max-w-sm w-full border border-slate-100">
+          <div class="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4"><i class="ph-fill ph-warning-circle"></i></div>
+          <h1 class="font-black text-xl text-slate-900">Oops!</h1>
+          <p class="text-slate-500 mt-2 text-sm">${msg}</p>
+          <a href="${location.pathname}" class="inline-block mt-6 btn-main px-6 py-3 rounded-xl font-bold w-full">Kembali ke Beranda</a>
+        </div>
+      `;
+    }
+
+    // --- COPY / SHARE UTILS ---
+    window.copyPublicLink = async () => { 
+      if (!currentProfile?.slug) return modal("Slug kosong", "Simpan profil dulu."); 
+      const url = getPublicLink(currentProfile.slug); 
+      try { 
+        await navigator.clipboard.writeText(url); 
+        modal("Sukses!", "Link showroom berhasil disalin. Tempelkan di Bio IG, TikTok, atau chat WA pelanggan Anda."); 
+      } catch { 
+        modal("Link Anda", url); 
+      } 
+    };
+    
+    window.openPublicPage = () => { 
+      if (!currentProfile?.slug) return modal("Slug kosong", "Simpan profil dulu."); 
+      window.open(getPublicLink(currentProfile.slug), "_blank"); 
+    };
+
+    // --- INITIALIZATION ---
+    // Rule 3: Guard with Auth. Initialize Anon if no user, otherwise manage state.
+    const initApp = async () => {
+      // Setup Auth Listener
+      onAuthStateChanged(auth, async user => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const publicSlug = urlParams.get('u');
+
+        if (user) {
+          if (user.isAnonymous) {
+            // Anonymous viewer
+            if (publicSlug) {
+              await loadPublicPage(publicSlug);
+            } else {
+              showOnly("landingPage");
+            }
+          } else {
+            // Logged in Dealer
+            currentUser = user;
+            if (publicSlug) {
+               await loadPublicPage(publicSlug); // Previewing own or others
+            } else {
+               await loadDashboard(user.uid);
+            }
+          }
+        } else {
+          // No user (neither anon nor dealer). Force Anonymous sign-in per Rule 3.
+          try {
+             // If we are in Canvas and have a custom token
+             if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                // Not standard for email/pass apps, but following Canvas guidelines
+                // Ignore for this specific email/pass flow if we want dealers to explicitly register.
+                // But for the public viewers, we need signInAnonymously.
+             }
+             await signInAnonymously(auth);
+          } catch(e) {
+             console.error("Anon Auth Failed:", e);
+             if (publicSlug) showPublicError("Gagal menghubungkan ke server database.");
+          }
+        }
+      });
+    };
+
+    // Start
+    initApp();
+
+  </script>
+</body>
+</html>
